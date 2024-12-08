@@ -3,6 +3,7 @@ const { Client, GatewayIntentBits, Collection, EmbedBuilder } = require('discord
 const fs = require('fs');
 const cron = require('node-cron');
 const moment = require('moment');
+const handleEvents = require('./functions/handleEvents');
 
 const mongoose = require('mongoose');
 

@@ -1,3 +1,4 @@
+
 module.exports = (client) => {
     client.handleEvents = async (eventFiles, path) => {
         for (const file of eventFiles) {

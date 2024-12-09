@@ -46,147 +46,77 @@ const commandFolders = fs.readdirSync('./src/commands');
   client.handleCommands(commandFolders, './src/commands');
   await client.login(process.env.token);
 
-  // DEALER.
-
-  const dealer = require('./mensajes/ilegal/dealer.json');
-  const dealerconfig = require('./schema/ilegal/dealerconfig.js');
-
-  cron.schedule('* * * * *', async () => {
-    try {
-      const now = new Date();
-      const currentTime = now.toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit' });
-  
-      for (const messageInfo of dealer) {
-        if (messageInfo.hour === currentTime) {
-          client.guilds.cache.forEach(async (guild) => {
-            try {
-              const config = await dealerconfig.findOne({ dealerserverId: guild.id });
-  
-              if (config) {
-                const channel = guild.channels.cache.get(config.dealerchannelId);
-                if (channel) {
-                  const dealer = await channel.messages.fetch({ limit: 1 });
-                  const lastdealer = dealer.first();
-                  if (lastdealer) {
-                    await lastdealer.delete();
-                  }
-                  const embed = new EmbedBuilder()
-                    .setColor(0xDF2020)
-                    .setTitle(messageInfo.mensaje)
-                    .setDescription('En este lugar encontrarás un pequeño emprendedor el cual te venderá algunas cosas..')
-                    .setImage(messageInfo.imagen);
-  
-                  await channel.send({ embeds: [embed] });
-                } else {
-                  console.error('El canal no se encontró o el bot no tiene permisos para enviar mensajes en él en el servidor:', guild.name);
-                }
-              } else {
-                console.error('Configuración de canal no encontrada para las ubicaciones del dealer en:', guild.name);
-              }
-            } catch (innerError) {
-              console.error('Error interno al procesar un servidor:', innerError);
-            }
-          });
-        }
-      }
-    } catch (error) {
-      console.error('Error al programar y enviar mensajes:', error);
-    }
-  });
-  
-  // DARKNET.
-
-  const darknet = require('./mensajes/ilegal/darknet.json');
-  const darknetconfig = require('./schema/ilegal/darknetconfig.js');
-
-  cron.schedule('* * * * *', async () => {
-    try {
-      const now = new Date();
-      const currentTime = now.toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit' });
-  
-      for (const mensajedarknet of darknet) {
-        if (mensajedarknet.hour === currentTime) {
-          client.guilds.cache.forEach(async (guild) => {
-            try {
-              const config = await darknetconfig.findOne({ darknetserverid: guild.id });
-  
-              if (config) {
-                const channel = guild.channels.cache.get(config.darknetchid);
-                if (channel) {
-                  const darknet = await channel.messages.fetch({ limit: 1 });
-                  const lastdarknet = darknet.first();
-                  if (lastdarknet) {
-                    await lastdarknet.delete();
-                  }
-                  const embeddarknet = new EmbedBuilder()
-                    .setColor(0xDF2020)
-                    .setTitle(mensajedarknet.mensaje)
-                    .setDescription('Varias personas avisaron de un teléfono descompuesto.. ve a revisarlo, capaz te llevas una sorpresa...')
-                    .setImage(mensajedarknet.imagen);
-  
-                  await channel.send({ embeds: [embeddarknet] });
-                } else {
-                  console.error('El canal no se encontró o el bot no tiene permisos para enviar mensajes en él en el servidor:', guild.name);
-                }
-              } else {
-                console.error('Configuración de canal no encontrada para darknet en:', guild.name);
-              }
-            } catch (innerError) {
-              console.error('Error interno al procesar un servidor:', innerError);
-            }
-          });
-        }
-      }
-    } catch (error) {
-      console.error('Error al programar y enviar mensajes:', error);
-    }
-  });
-
   // EMPRESAS DE SERVICIO
 
   const empresaservicio = require('./mensajes/legal/empresaservicio.json');
   const empresaservicioconfig = require('./schema/legal/empresaservicioconfig');
 
-  cron.schedule('* * * * *', async () => {
+  cron.schedule("* * * * *", async () => {
     try {
+    
       const now = new Date();
-      const currentTime = now.toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit' });
+      const horaCanarias = new Date(
+        now.toLocaleString("en-US", { timeZone: "Atlantic/Canary" })
+      );
   
-      for (const mensajeempresaservicio of empresaservicio) {
-        if (mensajeempresaservicio.hour === currentTime) {
-          client.guilds.cache.forEach(async (guild) => {
+      const horas = horaCanarias.getHours().toString().padStart(2, "0");
+      const minutos = horaCanarias.getMinutes().toString().padStart(2, "0");
+      const currentTime = `${horas}:${minutos}`;
+  
+      const mensajesParaEnviar = empresaservicio.filter(
+        (mensaje) => mensaje.hour === currentTime
+      );
+  
+      if (mensajesParaEnviar.length > 0) {
+        const servers = await empresaservicioconfig.find();
+  
+        for (const server of servers) {
+          const { servicioserverId, serviciochannelId } = server;
+  
+          const guild = await client.guilds.fetch(servicioserverId);
+          if (!guild) {
+            console.error(`Servidor no encontrado: ${servicioserverId}`);
+            continue;
+          }
+  
+          const channel = guild.channels.cache.get(serviciochannelId);
+          if (!channel) {
+            console.error(`Canal no encontrado: ${serviciochannelId}`);
+            continue;
+          }
+  
+          if (!channel.permissionsFor(client.user).has("SEND_MESSAGES")) {
+            console.error(
+              `El bot no tiene permisos para enviar mensajes en el canal: ${channel.name}`
+            );
+            continue;
+          }
+  
+          for (const mensaje of mensajesParaEnviar) {
+            const embed = new EmbedBuilder()
+              .setColor("#063970")
+              .setTitle(mensaje.mensaje)
+              .setDescription(
+                'Suena el teléfono.. es el jefe, necesita que hagas algunas tareas..'
+              )
+              .setImage(mensaje.imagen);
+  
             try {
-              const config = await empresaservicioconfig.findOne({ servicioserverId: guild.id });
-  
-              if (config) {
-                const channel = guild.channels.cache.get(config.serviciochannelId);
-                if (channel) {
-                  const empresaservicio = await channel.messages.fetch({ limit: 1 });
-                  const lastempresaservicio = empresaservicio.first();
-                  if (lastempresaservicio) {
-                    await lastempresaservicio.delete();
-                  }
-                  const embedempresaservicio = new EmbedBuilder()
-                    .setColor(0xDF2020)
-                    .setTitle(mensajeempresaservicio.mensaje)
-                    .setDescription('Suena el teléfono... es el jefe, necesita que hagas algunas tareas..')
-                    .setImage(mensajeempresaservicio.imagen);
-  
-                  await channel.send({ embeds: [embedempresaservicio] });
-                } else {
-                  console.error('El canal no se encontró o el bot no tiene permisos para enviar mensajes en él en el servidor:', guild.name);
-                }
-              } else {
-                console.error('Configuración de canal no encontrada para actividades empresa de servicio en:', guild.name);
-              }
-            } catch (innerError) {
-              console.error('Error interno al procesar un servidor:', innerError);
+              await channel.send({ embeds: [embed] });
+              console.log(
+                `Mensaje enviado al canal ${serviciochannelId} en el servidor ${empresataxisserverId}`
+              );
+            } catch (error) {
+              console.error(
+                `Error al enviar mensaje al canal ${serviciochannelId}:`,
+                error
+              );
             }
-          });
+          }
         }
       }
     } catch (error) {
-      console.error('Error al programar y enviar mensajes:', error);
+      console.error("Error en el cron de notificaciones:", error);
     }
   });
 
@@ -195,48 +125,76 @@ const commandFolders = fs.readdirSync('./src/commands');
   const empresataxis = require('./mensajes/legal/empresataxis.json');
   const empresataxisconfig = require('./schema/legal/empresataxisconfig');
 
-  cron.schedule('* * * * *', async () => {
+  cron.schedule("* * * * *", async () => {
     try {
+      console.log("Cron job ejecutándose...");
+  
       const now = new Date();
-      const currentTime = now.toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit' });
+      const horaCanarias = new Date(
+        now.toLocaleString("en-US", { timeZone: "Atlantic/Canary" })
+      );
   
-      for (const mensajeempresataxis of empresataxis) {
-        if (mensajeempresataxis.hour === currentTime) {
-          client.guilds.cache.forEach(async (guild) => {
+      const horas = horaCanarias.getHours().toString().padStart(2, "0");
+      const minutos = horaCanarias.getMinutes().toString().padStart(2, "0");
+      const currentTime = `${horas}:${minutos}`;
+  
+      const mensajesParaEnviar = empresataxis.filter(
+        (mensaje) => mensaje.hour === currentTime
+      );
+  
+      if (mensajesParaEnviar.length > 0) {
+        const servers = await empresataxisconfig.find();
+  
+        for (const server of servers) {
+          const { empresataxisserverId, empresataxischannelId } = server;
+  
+          const guild = await client.guilds.fetch(empresataxisserverId);
+          if (!guild) {
+            console.error(`Servidor no encontrado: ${empresataxisserverId}`);
+            continue;
+          }
+  
+          const channel = guild.channels.cache.get(empresataxischannelId);
+          if (!channel) {
+            console.error(`Canal no encontrado: ${empresataxischannelId}`);
+            continue;
+          }
+  
+          if (!channel.permissionsFor(client.user).has("SEND_MESSAGES")) {
+            console.error(
+              `El bot no tiene permisos para enviar mensajes en el canal: ${channel.name}`
+            );
+            continue;
+          }
+  
+          for (const mensaje of mensajesParaEnviar) {
+            const embed = new EmbedBuilder()
+              .setColor("#063970")
+              .setTitle(mensaje.mensaje)
+              .setDescription(
+                'Suena el teléfono.. es el jefe, necesita que hagas algunas tareas..'
+              )
+              .setImage(mensaje.imagen);
+  
             try {
-              const config = await empresataxisconfig.findOne({ empresataxisserverId: guild.id });
-  
-              if (config) {
-                const channel = guild.channels.cache.get(config.empresataxischannelId);
-                if (channel) {
-                  const empresataxis = await channel.messages.fetch({ limit: 1 });
-                  const lastempresataxis = empresataxis.first();
-                  if (lastempresataxis) {
-                    await lastempresataxis.delete();
-                  }
-                  const embedempresataxis = new EmbedBuilder()
-                    .setColor(0xDF2020)
-                    .setTitle(mensajeempresataxis.mensaje)
-                    .setDescription('Suena el teléfono.. es el jefe, necesita que hagas algunas tareas..')
-                    .setImage(mensajeempresataxis.imagen);
-  
-                  await channel.send({ embeds: [embedempresataxis] });
-                } else {
-                  console.error('El canal no se encontró o el bot no tiene permisos para enviar mensajes en él en el servidor:', guild.name);
-                }
-              } else {
-                console.error('Configuración de canal no encontrada para actividades empresa de taxi en:', guild.name);
-              }
-            } catch (innerError) {
-              console.error('Error interno al procesar un servidor:', innerError);
+              await channel.send({ embeds: [embed] });
+              console.log(
+                `Mensaje enviado al canal ${empresataxischannelId} en el servidor ${empresataxisserverId}`
+              );
+            } catch (error) {
+              console.error(
+                `Error al enviar mensaje al canal ${empresataxischannelId}:`,
+                error
+              );
             }
-          });
+          }
         }
       }
     } catch (error) {
-      console.error('Error al programar y enviar mensajes:', error);
+      console.error("Error en el cron de notificaciones:", error);
     }
-  });  
+  });
+    
 
   // EMPRESAS DE MECANICOS
 
@@ -256,13 +214,9 @@ const commandFolders = fs.readdirSync('./src/commands');
       const minutos = horaCanarias.getMinutes().toString().padStart(2, "0");
       const currentTime = `${horas}:${minutos}`;
   
-      console.log(`Hora actual en Canarias: ${currentTime}`);
-  
       const mensajesParaEnviar = empresamecanico.filter(
         (mensaje) => mensaje.hour === currentTime
       );
-  
-      console.log("Mensajes para enviar:", mensajesParaEnviar);
   
       if (mensajesParaEnviar.length > 0) {
         const servers = await empresamecanicoconfig.find();
@@ -324,46 +278,72 @@ const commandFolders = fs.readdirSync('./src/commands');
   const empresaseguridad = require('./mensajes/legal/empresaseguridad.json');
   const empresaseguridadconfig = require('./schema/legal/empresaseguridadconfig');
 
-  cron.schedule('* * * * *', async () => {
+  cron.schedule("* * * * *", async () => {
     try {
+    
       const now = new Date();
-      const currentTime = now.toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit' });
+      const horaCanarias = new Date(
+        now.toLocaleString("en-US", { timeZone: "Atlantic/Canary" })
+      );
   
-      for (const mensajeempresaseguridad of empresaseguridad) {
-        if (mensajeempresaseguridad.hour === currentTime) {
-          client.guilds.cache.forEach(async (guild) => {
+      const horas = horaCanarias.getHours().toString().padStart(2, "0");
+      const minutos = horaCanarias.getMinutes().toString().padStart(2, "0");
+      const currentTime = `${horas}:${minutos}`;
+  
+      const mensajesParaEnviar = empresaseguridad.filter(
+        (mensaje) => mensaje.hour === currentTime
+      );
+  
+      if (mensajesParaEnviar.length > 0) {
+        const servers = await empresaseguridadconfig.find();
+  
+        for (const server of servers) {
+          const { empresaseguridadserverId, empresaseguridadchannelId } = server;
+  
+          const guild = await client.guilds.fetch(empresaseguridadserverId);
+          if (!guild) {
+            console.error(`Servidor no encontrado: ${empresaseguridadserverId}`);
+            continue;
+          }
+  
+          const channel = guild.channels.cache.get(empresaseguridadchannelId);
+          if (!channel) {
+            console.error(`Canal no encontrado: ${empresaseguridadchannelId}`);
+            continue;
+          }
+  
+          if (!channel.permissionsFor(client.user).has("SEND_MESSAGES")) {
+            console.error(
+              `El bot no tiene permisos para enviar mensajes en el canal: ${channel.name}`
+            );
+            continue;
+          }
+  
+          for (const mensaje of mensajesParaEnviar) {
+            const embed = new EmbedBuilder()
+              .setColor("#063970")
+              .setTitle(mensaje.mensaje)
+              .setDescription(
+                'Suena el teléfono.. es el jefe, necesita que hagas algunas tareas..'
+              )
+              .setImage(mensaje.imagen);
+  
             try {
-              const config = await empresaseguridadconfig.findOne({ empresaseguridadserverId: guild.id });
-  
-              if (config) {
-                const channel = guild.channels.cache.get(config.empresaseguridadchannelId);
-                if (channel) {
-                  const empresaseguridad = await channel.messages.fetch({ limit: 1 });
-                  const lastempresaseguridad = empresaseguridad.first();
-                  if (lastempresaseguridad) {
-                    await lastempresaseguridad.delete();
-                  }
-                  const embedempresaseguridad = new EmbedBuilder()
-                    .setColor(0xDF2020)
-                    .setTitle(mensajeempresaseguridad.mensaje)
-                    .setDescription('Suena el teléfono.. es el jefe, necesita que hagas algunas tareas..')
-                    .setImage(mensajeempresaseguridad.imagen);
-  
-                  await channel.send({ embeds: [embedempresaseguridad] });
-                } else {
-                  console.error('El canal no se encontró o el bot no tiene permisos para enviar mensajes en él en el servidor:', guild.name);
-                }
-              } else {
-                console.error('Configuración de canal no encontrada para actividades empresa de seguridad en:', guild.name);
-              }
-            } catch (innerError) {
-              console.error('Error interno al procesar un servidor:', innerError);
+              await channel.send({ embeds: [embed] });
+              console.log(
+                `Mensaje enviado al canal ${empresaseguridadchannelId} en el servidor ${empresaseguridadserverId}`
+              );
+            } catch (error) {
+              console.error(
+                `Error al enviar mensaje al canal ${empresaseguridadchannelId}:`,
+                error
+              );
             }
-          });
+          }
         }
       }
     } catch (error) {
-      console.error('Error al programar y enviar mensajes:', error);
+      console.error("Error en el cron de notificaciones:", error);
     }
   });  
 

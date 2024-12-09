@@ -5,7 +5,7 @@ const ceonotify = process.env.ceonotify.split(",");
 
 module.exports = {
   data: new SlashCommandBuilder()
-    .setName("taxis")
+    .setName("empresataxis")
     .setDescription("Establece el canal donde serán enviados los avisos.")
     .addChannelOption(option =>
       option.setName("canal")

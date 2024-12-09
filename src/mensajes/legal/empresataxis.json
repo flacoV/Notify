@@ -7,7 +7,7 @@
   {
     "mensaje": "¡Atencion! Hora de trabajar. [S.Taxi]",
     "imagen": "https://i.imgur.com/jlvoXig.png",
-    "hour": "12:00"
+    "hour": "00:17"
   },
   {
     "mensaje": "¡Atencion! Hora de trabajar. [S.Taxi]",
@@ -111,6 +111,6 @@
   {
     "mensaje": "¡Atencion! Hora de trabajar. [C.VIP]",
     "imagen": "https://i.imgur.com/JwefTRP.png",
-    "hour": "22:00"
+    "hour": "00:20"
   }
 ]

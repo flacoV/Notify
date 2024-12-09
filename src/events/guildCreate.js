@@ -1,4 +1,4 @@
-const Guild = require('../schema/guildConfig')
+const Guild = require('../schema/empresasConfig.js')
 
 module.exports = {
     name: 'guildCreate',
@@ -12,7 +12,7 @@ module.exports = {
                         mecanico: { activo: true },
                         transporte: { activo: true },
                         seguridad: { activo: true },
-                        otros: { activo: true },
+                        servicios: { activo: true },
                     },
                 });
                 console.log(`Servidor registrado: ${guild.id}`);

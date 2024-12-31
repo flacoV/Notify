@@ -29,55 +29,71 @@
 
   {
     "mensaje": "¡Atencion! Hora de trabajar. [R-Carretera]",
+    "descripcion": "Te han llamado varios clientes para reparar sus vehículos, ve a cada uno de ellos y repáralos.",
     "imagen": "https://i.imgur.com/wpFyU45.png",
-    "hour": "01:21"
-  },
-  {
-    "mensaje": "¡Atencion! Hora de trabajar. [R-Carretera]",
-    "imagen": "https://i.imgur.com/wpFyU45.png",
-    "hour": "08:00"
-  },
-  {
-    "mensaje": "¡Atencion! Hora de trabajar. [R-Carretera]",
-    "imagen": "https://i.imgur.com/wpFyU45.png",
-    "hour": "13:00"
-  },
-  {
-    "mensaje": "¡Atencion! Hora de trabajar. [R-Carretera]",
-    "imagen": "https://i.imgur.com/wpFyU45.png",
-    "hour": "17:00"
-  },
-  {
-    "mensaje": "¡Atencion! Hora de trabajar. [R-Carretera]",
-    "imagen": "https://i.imgur.com/wpFyU45.png",
-    "hour": "18:00"
-  },
-  {
-    "mensaje": "¡Atencion! Hora de trabajar. [R-Carretera]",
-    "imagen": "https://i.imgur.com/wpFyU45.png",
-    "hour": "23:49"
-  },
-
-
-
-  {
-    "mensaje": "¡Atencion! Hora de trabajar. [R-Industrial]",
-    "imagen": "https://i.imgur.com/NgK2cEe.png",
     "hour": "00:00"
   },
   {
+    "mensaje": "¡Atencion! Hora de trabajar. [R-Carretera]",
+    "descripcion": "Te han llamado varios clientes para reparar sus vehículos, ve a cada uno de ellos y repáralos.",
+    "imagen": "https://i.imgur.com/wpFyU45.png",
+    "hour": "01:00"
+  },
+  {
+    "mensaje": "¡Atencion! Hora de trabajar. [R-Carretera]",
+    "descripcion": "Te han llamado varios clientes para reparar sus vehículos, ve a cada uno de ellos y repáralos.",
+    "imagen": "https://i.imgur.com/wpFyU45.png",
+    "hour": "04:00"
+  },
+  {
+    "mensaje": "¡Atencion! Hora de trabajar. [R-Carretera]",
+    "descripcion": "Te han llamado varios clientes para reparar sus vehículos, ve a cada uno de ellos y repáralos.",
+    "imagen": "https://i.imgur.com/wpFyU45.png",
+    "hour": "07:00"
+  },
+  {
+    "mensaje": "¡Atencion! Hora de trabajar. [R-Carretera]",
+    "descripcion": "Te han llamado varios clientes para reparar sus vehículos, ve a cada uno de ellos y repáralos.",
+    "imagen": "https://i.imgur.com/wpFyU45.png",
+    "hour": "15:00"
+  },
+  {
+    "mensaje": "¡Atencion! Hora de trabajar. [R-Carretera]",
+    "descripcion": "Te han llamado varios clientes para reparar sus vehículos, ve a cada uno de ellos y repáralos.",
+    "imagen": "https://i.imgur.com/wpFyU45.png",
+    "hour": "19:00"
+  },
+  {
+    "mensaje": "¡Atencion! Hora de trabajar. [R-Carretera]",
+    "descripcion": "Te han llamado varios clientes para reparar sus vehículos, ve a cada uno de ellos y repáralos.",
+    "imagen": "https://i.imgur.com/wpFyU45.png",
+    "hour": "21:00"
+  },
+
+
+
+  {
     "mensaje": "¡Atencion! Hora de trabajar. [R-Industrial]",
-    "imagen": "https://i.imgur.com/NgK2cEe.png",
+    "descripcion": "Te han solicitado que realices una reparación de un vehículo de tipo industrial, dérivate rápido para que puedan seguir trabajando correctamente.",
+    "imagen": "https://i.imgur.com/bnjA207.png",
+    "hour": "23:17"
+  },
+  {
+    "mensaje": "¡Atencion! Hora de trabajar. [R-Industrial]",
+    "descripcion": "Te han solicitado que realices una reparación de un vehículo de tipo industrial, dérivate rápido para que puedan seguir trabajando correctamente.",
+    "imagen": "https://i.imgur.com/bnjA207.png",
     "hour": "03:00"
   },
   {
     "mensaje": "¡Atencion! Hora de trabajar. [R-Industrial]",
-    "imagen": "https://i.imgur.com/NgK2cEe.png",
+    "descripcion": "Te han solicitado que realices una reparación de un vehículo de tipo industrial, dérivate rápido para que puedan seguir trabajando correctamente.",
+    "imagen": "https://i.imgur.com/bnjA207.png",
     "hour": "11:00"
   },
   {
     "mensaje": "¡Atencion! Hora de trabajar. [R-Industrial]",
-    "imagen": "https://i.imgur.com/NgK2cEe.png",
+    "descripcion": "Te han solicitado que realices una reparación de un vehículo de tipo industrial, dérivate rápido para que puedan seguir trabajando correctamente.",
+    "imagen": "https://i.imgur.com/bnjA207.png",
     "hour": "20:00"
   }
 ]

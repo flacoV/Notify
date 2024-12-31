@@ -127,7 +127,6 @@ const commandFolders = fs.readdirSync('./src/commands');
 
   cron.schedule("* * * * *", async () => {
     try {
-      console.log("Cron job ejecutándose...");
   
       const now = new Date();
       const horaCanarias = new Date(
@@ -203,7 +202,6 @@ const commandFolders = fs.readdirSync('./src/commands');
 
   cron.schedule("* * * * *", async () => {
     try {
-      console.log("Cron job ejecutándose...");
   
       const now = new Date();
       const horaCanarias = new Date(
@@ -222,7 +220,7 @@ const commandFolders = fs.readdirSync('./src/commands');
         const servers = await empresamecanicoconfig.find();
   
         for (const server of servers) {
-          const { mecanicoserverId, mecanicochannelId } = server;
+          const { mecanicoserverId, mecanicochannelId, mecanicoroleId } = server;
   
           const guild = await client.guilds.fetch(mecanicoserverId);
           if (!guild) {
@@ -234,6 +232,11 @@ const commandFolders = fs.readdirSync('./src/commands');
           if (!channel) {
             console.error(`Canal no encontrado: ${mecanicochannelId}`);
             continue;
+          }
+
+          const role = guild.roles.cache.get(mecanicoroleId);
+          if (!role) {
+            console.error(`Rol no encontrado: ${mecanicoroleId}`);
           }
   
           if (!channel.permissionsFor(client.user).has("SEND_MESSAGES")) {
@@ -247,13 +250,12 @@ const commandFolders = fs.readdirSync('./src/commands');
             const embed = new EmbedBuilder()
               .setColor("#DF2020")
               .setTitle(mensaje.mensaje)
-              .setDescription(
-                "¡Atención! Es hora de trabajar. Asegúrate de estar listo."
-              )
-              .setImage(mensaje.imagen);
+              .setDescription(mensaje.descripcion)
+              .setImage(mensaje.imagen)
+              .setFooter({ text: 'Powered by REINNOVA.'})
   
             try {
-              await channel.send({ embeds: [embed] });
+              await channel.send({ content: `<@&${mecanicoroleId}>`, embeds: [embed] });
               console.log(
                 `Mensaje enviado al canal ${mecanicochannelId} en el servidor ${mecanicoserverId}`
               );

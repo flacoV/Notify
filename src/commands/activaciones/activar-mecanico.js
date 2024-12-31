@@ -1,3 +1,45 @@
+const { SlashCommandBuilder } = require('@discordjs/builders');
+const empresamecanicoconfig = require('../../schema/legal/empresamecanicoconfig');
+
+module.exports = {
+  data: new SlashCommandBuilder()
+    .setName('activar-mecanico')
+    .setDescription('Activa el notificador para mecánicos')
+    .addChannelOption(option =>
+      option.setName('canal')
+        .setDescription('El canal donde se enviarán las notificaciones')
+        .setRequired(true))
+    .addRoleOption(option =>
+      option.setName('rol')
+        .setDescription('El rol que será mencionado en las notificaciones')
+        .setRequired(true)),
+  async execute(interaction) {
+    const canal = interaction.options.getChannel('canal');
+    const rol = interaction.options.getRole('rol');
+
+    const serverId = interaction.guild.id;
+    const channelId = canal.id;
+    const roleId = rol.id;
+
+    try {
+      await empresamecanicoconfig.findOneAndUpdate(
+        { mecanicoserverId: serverId },
+        { mecanicochannelId: channelId, mecanicoroleId: roleId },
+        { upsert: true, new: true }
+      );
+
+      await interaction.reply(`Notificador activado en el canal <#${channelId}> para el rol <@&${roleId}>.`);
+    } catch (error) {
+      console.error('Error al activar el notificador:', error);
+      await interaction.reply('Hubo un error al activar el notificador.');
+    }
+  },
+};
+
+
+
+
+/*
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const empresamecanicoconfig = require("../../schema/legal/empresamecanicoconfig");
 
@@ -11,7 +53,12 @@ module.exports = {
       option.setName("canal")
         .setDescription("Selecciona el canal donde se enviarán los avisos.")
         .setRequired(true)
-    ),
+    )
+    .addRoleOption(option =>
+      option.setName('rol')
+        .setDescription('El rol que será mencionado en las notificaciones')
+        .setRequired(true)),
+    
   async execute(interaction) {
     const userId = interaction.user.id;
     
@@ -22,15 +69,17 @@ module.exports = {
 
     const mecanicoserverId = interaction.guild.id;
     const mecanicochannelId = interaction.options.getChannel("canal").id;
+    const mecanicoroleId = interaction.options.getChannel("rol").id;
 
     try {
       await empresamecanicoconfig.findOneAndUpdate(
         { mecanicoserverId },
         { mecanicochannelId },
+        { mecanicoroleId },
         { upsert: true }
       );
 
-      console.log(`Canal configurado para recibir alertas sobre las actividades de empresas de mecanico en el servidor ${mecanicoserverId}, en el canal ${mecanicochannelId}`);
+      console.log(`Canal configurado para recibir alertas sobre las actividades de empresas de mecanico en el servidor ${mecanicoserverId}, en el canal ${mecanicochannelId}, seran notificados todos los ${mecanicoroleId}.`);
 
       await interaction.reply({ content: "Canal configurado para recibir avisos de empresas de mecanico en el servidor.", ephemeral: true });
     } catch (error) {
@@ -39,3 +88,4 @@ module.exports = {
     }
   },
 };
+*/

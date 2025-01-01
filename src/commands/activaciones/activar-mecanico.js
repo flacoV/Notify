@@ -3,7 +3,7 @@ const empresamecanicoconfig = require('../../schema/legal/empresamecanicoconfig'
 
 module.exports = {
   data: new SlashCommandBuilder()
-    .setName('activar-mecanico')
+    .setName('empresamecanico')
     .setDescription('Activa el notificador para mecánicos')
     .addChannelOption(option =>
       option.setName('canal')

@@ -252,7 +252,8 @@ const commandFolders = fs.readdirSync('./src/commands');
               .setTitle(mensaje.mensaje)
               .setDescription(mensaje.descripcion)
               .setImage(mensaje.imagen)
-              .setFooter({ text: 'Powered by REINNOVA.'})
+              .setTimestamp()
+              .setFooter({ text: 'Powered by REINNOVA.', iconURL: 'https://i.imgur.com/tvvGQh8.png'})
   
             try {
               await channel.send({ content: `<@&${mecanicoroleId}>`, embeds: [embed] });

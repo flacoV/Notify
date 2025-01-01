@@ -28,7 +28,7 @@ module.exports = {
         { upsert: true, new: true }
       );
 
-      await interaction.reply(`Notificador activado en el canal <#${channelId}> para el rol <@&${roleId}>.`);
+      await interaction.reply(`Gracias por elegirnos!.\nSe configuro el canal <#${channelId}> para recibir avisos de trabajos correctamente. \nSe notificara via el rol: <@&${roleId}>.`);
     } catch (error) {
       console.error('Error al activar el notificador:', error);
       await interaction.reply('Hubo un error al activar el notificador.');

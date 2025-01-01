@@ -13,7 +13,7 @@ module.exports = {
         .addFields(
             { name: "Mecanica", value: "✅ Activo", inline: true },
             { name: "Transporte", value: "🛠️ En Desarrollo", inline: true },
-            { name: "Seguridad", value: "🛠️ En Desarrollo", inline: true },
+            { name: "Seguridad", value: "✅ Activo", inline: true },
             { name: "Servicios/Otros", value: "🛠️ En Desarrollo", inline: true },
     )
     .setTimestamp()

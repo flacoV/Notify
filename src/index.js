@@ -253,7 +253,7 @@ const commandFolders = fs.readdirSync('./src/commands');
               .setDescription(mensaje.descripcion)
               .setImage(mensaje.imagen)
               .setTimestamp()
-              .setFooter({ text: 'Powered by REINNOVA.', iconURL: 'https://i.imgur.com/tvvGQh8.png'})
+              .setFooter({ text: 'Ciudad de Los Santos', iconURL: 'https://i.imgur.com/C6GXDqO.png'})
   
             try {
               await channel.send({ content: `<@&${mecanicoroleId}>`, embeds: [embed] });
@@ -301,7 +301,7 @@ const commandFolders = fs.readdirSync('./src/commands');
         const servers = await empresaseguridadconfig.find();
   
         for (const server of servers) {
-          const { empresaseguridadserverId, empresaseguridadchannelId } = server;
+          const { empresaseguridadserverId, empresaseguridadchannelId, seguridadroleId } = server;
   
           const guild = await client.guilds.fetch(empresaseguridadserverId);
           if (!guild) {
@@ -312,6 +312,12 @@ const commandFolders = fs.readdirSync('./src/commands');
           const channel = guild.channels.cache.get(empresaseguridadchannelId);
           if (!channel) {
             console.error(`Canal no encontrado: ${empresaseguridadchannelId}`);
+            continue;
+          }
+
+          const role = guild.roles.cache.get(seguridadroleId);
+          if(!role){
+            console.error(`Rol no encontrado: ${seguridadroleId}`);
             continue;
           }
   
@@ -326,13 +332,13 @@ const commandFolders = fs.readdirSync('./src/commands');
             const embed = new EmbedBuilder()
               .setColor("#063970")
               .setTitle(mensaje.mensaje)
-              .setDescription(
-                'Suena el teléfono.. es el jefe, necesita que hagas algunas tareas..'
-              )
-              .setImage(mensaje.imagen);
+              .setDescription(mensaje.descripcion)
+              .setImage(mensaje.imagen)
+              .setTimestamp()
+              .setFooter({text: 'Ciudad de Los Santos', iconURL: 'https://i.imgur.com/C6GXDqO.png'})
   
             try {
-              await channel.send({ embeds: [embed] });
+              await channel.send({ content: `<@&${seguridadroleId}>`, embeds: [embed] });
               console.log(
                 `Mensaje enviado al canal ${empresaseguridadchannelId} en el servidor ${empresaseguridadserverId}`
               );

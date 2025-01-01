@@ -1,19 +1,27 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const empresamecanicoconfig = require('../../schema/legal/empresamecanicoconfig');
 
+const ceonotify = process.env.ceonotify.split(",");
+
 module.exports = {
   data: new SlashCommandBuilder()
     .setName('empresamecanico')
-    .setDescription('Activa el notificador para mecánicos')
+    .setDescription('Establece el canal donde serán enviados los avisos.')
     .addChannelOption(option =>
       option.setName('canal')
-        .setDescription('El canal donde se enviarán las notificaciones')
+        .setDescription('Selecciona el canal donde se enviarán los avisos.')
         .setRequired(true))
     .addRoleOption(option =>
       option.setName('rol')
         .setDescription('El rol que será mencionado en las notificaciones')
         .setRequired(true)),
   async execute(interaction) {
+    const userId = interaction.user.id;
+    
+    if (!ceonotify.includes(userId)) {
+      await interaction.reply({ content: "No tienes permiso para ejecutar este comando. Contacta con el proveedor!", ephemeral: true });
+      return;
+    }
     const canal = interaction.options.getChannel('canal');
     const rol = interaction.options.getRole('rol');
 

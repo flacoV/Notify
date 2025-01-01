@@ -1,50 +1,32 @@
 [
   {
     "mensaje": "¡Atencion! Hora de trabajar. [S-Escolta]",
+    "descripcion": "Te han llamado para realizar un servicio de escolta a una persona muy importante, reúne a todo tu equipo para esta tarea.",
     "imagen": "https://i.imgur.com/OSPO41s.png",
-    "hour": "01:00"
-  },
-  {
-    "mensaje": "¡Atencion! Hora de trabajar. [S-Escolta]",
-    "imagen": "https://i.imgur.com/OSPO41s.png",
-    "hour": "08:00"
-  },
-  {
-    "mensaje": "¡Atencion! Hora de trabajar. [S-Escolta]",
-    "imagen": "https://i.imgur.com/OSPO41s.png",
-    "hour": "15:00"
-  },
-  {
-    "mensaje": "¡Atencion! Hora de trabajar. [S-Escolta]",
-    "imagen": "https://i.imgur.com/OSPO41s.png",
-    "hour": "21:00"
-  },
-
-
-
-  {
-    "mensaje": "¡Atencion! Hora de trabajar. [I-Alarmas]",
-    "imagen": "https://i.imgur.com/aJkpGwM.png",
     "hour": "03:00"
   },
   {
-    "mensaje": "¡Atencion! Hora de trabajar. [I-Alarmas]",
-    "imagen": "https://i.imgur.com/aJkpGwM.png",
+    "mensaje": "¡Atencion! Hora de trabajar. [S-Escolta]",
+    "descripcion": "Te han llamado para realizar un servicio de escolta a una persona muy importante, reúne a todo tu equipo para esta tarea.",
+    "imagen": "https://i.imgur.com/OSPO41s.png",
     "hour": "06:00"
   },
   {
-    "mensaje": "¡Atencion! Hora de trabajar. [I-Alarmas]",
-    "imagen": "https://i.imgur.com/aJkpGwM.png",
+    "mensaje": "¡Atencion! Hora de trabajar. [S-Escolta]",
+    "descripcion": "Te han llamado para realizar un servicio de escolta a una persona muy importante, reúne a todo tu equipo para esta tarea.",
+    "imagen": "https://i.imgur.com/OSPO41s.png",
     "hour": "18:00"
   },
   {
-    "mensaje": "¡Atencion! Hora de trabajar. [I-Alarmas]",
-    "imagen": "https://i.imgur.com/aJkpGwM.png",
+    "mensaje": "¡Atencion! Hora de trabajar. [S-Escolta]",
+    "descripcion": "Te han llamado para realizar un servicio de escolta a una persona muy importante, reúne a todo tu equipo para esta tarea.",
+    "imagen": "https://i.imgur.com/OSPO41s.png",
     "hour": "20:00"
   },
   {
-    "mensaje": "¡Atencion! Hora de trabajar. [I-Alarmas]",
-    "imagen": "https://i.imgur.com/aJkpGwM.png",
+    "mensaje": "¡Atencion! Hora de trabajar. [S-Escolta]",
+    "descripcion": "Te han llamado para realizar un servicio de escolta a una persona muy importante, reúne a todo tu equipo para esta tarea.",
+    "imagen": "https://i.imgur.com/OSPO41s.png",
     "hour": "22:00"
   },
 
@@ -52,68 +34,115 @@
 
   {
     "mensaje": "¡Atencion! Hora de trabajar. [R-Seguridad]",
-    "imagen": "https://i.imgur.com/DI91bXB.png",
+    "descripcion": "Hubo una extraña caída de la conexión general de la ciudad, tu tarea es ir a reconectarla y arreglarla para que funcione correctamente.",
+    "imagen": "https://i.imgur.com/UlLarVw.png",
     "hour": "00:00"
   },
   {
     "mensaje": "¡Atencion! Hora de trabajar. [R-Seguridad]",
-    "imagen": "https://i.imgur.com/DI91bXB.png",
+    "descripcion": "Hubo una extraña caída de la conexión general de la ciudad, tu tarea es ir a reconectarla y arreglarla para que funcione correctamente.",
+    "imagen": "https://i.imgur.com/UlLarVw.png",
     "hour": "17:00"
   },
 
 
-
+ 
   {
-    "mensaje": "¡Atencion! Hora de trabajar. [R-Cajeros]",
-    "imagen": "https://i.imgur.com/u2Bcfxx.png",
-    "hour": "04:00"
+    "mensaje": "¡Atencion! Hora de trabajar. [I-Camaras]",
+    "descripcion": "Varios clientes te han solicitado que realices una instalación de alarmas por sus propiedades, ve y realiza el mejor trabajo posible.",
+    "imagen": "https://i.imgur.com/iEk3Kcf.png",
+    "hour": "03:00"
   },
   {
-    "mensaje": "¡Atencion! Hora de trabajar. [R-Cajeros]",
-    "imagen": "https://i.imgur.com/u2Bcfxx.png",
-    "hour": "07:00"
+    "mensaje": "¡Atencion! Hora de trabajar. [I-Camaras]",
+    "descripcion": "Varios clientes te han solicitado que realices una instalación de alarmas por sus propiedades, ve y realiza el mejor trabajo posible.",
+    "imagen": "https://i.imgur.com/iEk3Kcf.png",
+    "hour": "06:00"
   },
   {
-    "mensaje": "¡Atencion! Hora de trabajar. [R-Cajeros]",
-    "imagen": "https://i.imgur.com/u2Bcfxx.png",
-    "hour": "10:00"
+    "mensaje": "¡Atencion! Hora de trabajar. [I-Camaras]",
+    "descripcion": "Varios clientes te han solicitado que realices una instalación de alarmas por sus propiedades, ve y realiza el mejor trabajo posible.",
+    "imagen": "https://i.imgur.com/iEk3Kcf.png",
+    "hour": "18:00"
   },
   {
-    "mensaje": "¡Atencion! Hora de trabajar. [R-Cajeros]",
-    "imagen": "https://i.imgur.com/u2Bcfxx.png",
-    "hour": "13:00"
+    "mensaje": "¡Atencion! Hora de trabajar. [I-Camaras]",
+    "descripcion": "Varios clientes te han solicitado que realices una instalación de alarmas por sus propiedades, ve y realiza el mejor trabajo posible.",
+    "imagen": "https://i.imgur.com/iEk3Kcf.png",
+    "hour": "20:00"
   },
   {
-    "mensaje": "¡Atencion! Hora de trabajar. [R-Cajeros]",
-    "imagen": "https://i.imgur.com/u2Bcfxx.png",
-    "hour": "16:00"
-  },
-  {
-    "mensaje": "¡Atencion! Hora de trabajar. [R-Cajeros]",
-    "imagen": "https://i.imgur.com/u2Bcfxx.png",
+    "mensaje": "¡Atencion! Hora de trabajar. [I-Camaras]",
+    "descripcion": "Varios clientes te han solicitado que realices una instalación de alarmas por sus propiedades, ve y realiza el mejor trabajo posible.",
+    "imagen": "https://i.imgur.com/iEk3Kcf.png",
     "hour": "22:00"
   },
 
 
 
+
+
+
+  {
+    "mensaje": "¡Atencion! Hora de trabajar. [R-Cajeros]",
+    "descripcion": "Deberás ir en búsqueda de bolsas con dinero para luego distribuir el mismo por los ATM de toda la ciudad.",
+    "imagen": "https://i.imgur.com/OSPO41s.png",
+    "hour": "04:00"
+  },
+  {
+    "mensaje": "¡Atencion! Hora de trabajar. [R-Cajeros]",
+    "descripcion": "Deberás ir en búsqueda de bolsas con dinero para luego distribuir el mismo por los ATM de toda la ciudad.",
+    "imagen": "https://i.imgur.com/OSPO41s.png",
+    "hour": "07:00"
+  },
+  {
+    "mensaje": "¡Atencion! Hora de trabajar. [R-Cajeros]",
+    "descripcion": "Deberás ir en búsqueda de bolsas con dinero para luego distribuir el mismo por los ATM de toda la ciudad.",
+    "imagen": "https://i.imgur.com/OSPO41s.png",
+    "hour": "10:00"
+  },
+  {
+    "mensaje": "¡Atencion! Hora de trabajar. [R-Cajeros]",
+    "descripcion": "Deberás ir en búsqueda de bolsas con dinero para luego distribuir el mismo por los ATM de toda la ciudad.",
+    "imagen": "https://i.imgur.com/OSPO41s.png",
+    "hour": "13:00"
+  },
+  {
+    "mensaje": "¡Atencion! Hora de trabajar. [R-Cajeros]",
+    "descripcion": "Deberás ir en búsqueda de bolsas con dinero para luego distribuir el mismo por los ATM de toda la ciudad.",
+    "imagen": "https://i.imgur.com/OSPO41s.png",
+    "hour": "16:00"
+  },
+  {
+    "mensaje": "¡Atencion! Hora de trabajar. [R-Cajeros]",
+    "descripcion": "Deberás ir en búsqueda de bolsas con dinero para luego distribuir el mismo por los ATM de toda la ciudad.",
+    "imagen": "https://i.imgur.com/OSPO41s.png",
+    "hour": "22:00"
+  },
+
+
   {
     "mensaje": "¡Atencion! Hora de trabajar. [R-Camaras]",
-    "imagen": "https://i.imgur.com/8TI4MPh.png",
+    "descripcion": "Debes reparar algunas cámaras de seguridad. Necesitas comprar una tablet en Digital Den o alguna tienda de electronicos.",
+    "imagen": "https://i.imgur.com/dZBHJ3Z.png",
     "hour": "00:00"
   },
   {
     "mensaje": "¡Atencion! Hora de trabajar. [R-Camaras]",
-    "imagen": "https://i.imgur.com/8TI4MPh.png",
+    "descripcion": "Debes reparar algunas cámaras de seguridad. Necesitas comprar una tablet en Digital Den o alguna tienda de electronicos.",
+    "imagen": "https://i.imgur.com/dZBHJ3Z.png",
     "hour": "02:00"
   },
   {
     "mensaje": "¡Atencion! Hora de trabajar. [R-Camaras]",
-    "imagen": "https://i.imgur.com/8TI4MPh.png",
-    "hour": "12:00"
+    "descripcion": "Debes reparar algunas cámaras de seguridad. Necesitas comprar una tablet en Digital Den o alguna tienda de electronicos.",
+    "imagen": "https://i.imgur.com/dZBHJ3Z.png",
+    "hour": "012:00"
   },
   {
     "mensaje": "¡Atencion! Hora de trabajar. [R-Camaras]",
-    "imagen": "https://i.imgur.com/8TI4MPh.png",
-    "hour": "19:00"
+    "descripcion": "Debes reparar algunas cámaras de seguridad.\nNecesitas comprar una tablet en Digital Den o\nalguna tienda de electronicos.",
+    "imagen": "https://i.imgur.com/vXPMbOR.png",
+    "hour": "21:20"
   }
 ]
